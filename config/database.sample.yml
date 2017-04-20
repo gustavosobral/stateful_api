@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: stateful_development
+  username:
+  password:
+
+test:
+  <<: *default
+  database: stateful_test
+  username:
+  password:
