@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+  - 2.4.1
+  
+cache: 
+  - bundler
+  - apt
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+before_script:
+  - cp config/database.sample.yml config/database.yml
+  - psql -c "select version();" -U postgres
+  - psql -c 'create database stateful_test;' -U postgres
+
+git:
+  depth: 3
+
+bundler_args: --without production

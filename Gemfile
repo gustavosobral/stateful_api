@@ -6,6 +6,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'devise'
+gem 'devise_token_auth'
 gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
@@ -28,6 +31,7 @@ group :development do
 end
 
 group :test do
+  gem 'airborne'
   gem 'database_cleaner'
   gem 'simplecov'
 end
