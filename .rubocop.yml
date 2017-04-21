@@ -9,6 +9,7 @@ AllCops:
    - 'db/migrate/*.rb'
    - 'config/initializers/*.rb'
    - 'vendor/bundle/**/*'
+   - 'spec/**/*'
 
 Metrics/LineLength:
   Max: 100
