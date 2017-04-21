@@ -4,4 +4,8 @@ FactoryGirl.define do
     email    { Faker::Internet.free_email }
     password { Faker::Internet.password(8) }
   end
+
+  factory :admin, parent: :user do
+    admin true
+  end
 end
