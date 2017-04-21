@@ -27,6 +27,7 @@ describe 'Authentication' do
       expect(response.status).to eq(200)
       expect_json('name', user.name)
       expect_json('email', user.email)
+      expect_json_keys([:id, :uid, :name, :email])
     end
   end
 end
