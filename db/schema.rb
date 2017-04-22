@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421215024) do
+ActiveRecord::Schema.define(version: 20170422171038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20170421215024) do
     t.integer  "current_state"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.integer  "model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["model_id"], name: "index_states_on_model_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,4 +50,5 @@ ActiveRecord::Schema.define(version: 20170421215024) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
+  add_foreign_key "states", "models"
 end

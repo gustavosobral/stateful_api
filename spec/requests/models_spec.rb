@@ -39,6 +39,8 @@ describe 'Models requests' do
       get "/v1/models/#{model.id}", params: {}, headers: @auth_headers
       expect(response.status).to eq(200)
       expect_json('name', model.name)
+      expect_json_keys([:id, :name, :current_state, :states])
+      expect_json_types(states: :array)
     end
 
     it 'update a existing model' do
