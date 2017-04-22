@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   namespace :v1, defaults: { format: :json } do
     get '/users/:id', to: 'users#show'
+
+    resources :models, except: %i[new edit]
   end
 end
