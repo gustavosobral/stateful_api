@@ -1,10 +1,19 @@
 describe 'Models requests' do
-  let(:user) { FactoryGirl.create(:user) }
+  context 'access' do
+    before(:context) do
+      user = FactoryGirl.create(:user)
+      @auth_headers = user.create_new_auth_token
+    end
 
-  it 'deny access to non-admin user' do
-    auth_headers = user.create_new_auth_token
-    get '/v1/models', params: {}, headers: auth_headers
-    expect(response.status).to eq(401)
+    it 'allow read actions to regular users' do
+      get '/v1/models', params: {}, headers: @auth_headers
+      expect(response.status).to eq(200)
+    end
+
+    it 'deny for non-admin user' do
+      delete '/v1/models/1', params: {}, headers: @auth_headers
+      expect(response.status).to eq(401)
+    end
   end
 
   context 'with valid data' do

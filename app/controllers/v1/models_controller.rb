@@ -2,7 +2,7 @@ module V1
   # Main models API endpoints
   class ModelsController < ApplicationController
     before_action :authenticate_user!
-    before_action :verify_admin!
+    before_action :verify_admin!, except: [:index, :show]
 
     def index
       models = Model.all
