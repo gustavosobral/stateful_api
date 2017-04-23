@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     get '/users/:id', to: 'users#show'
 
     resources :models, except: [:new, :edit] do
-      resources :states, only: [:index, :update]
+      get '/states',  to: 'states#index'
+      post '/states', to: 'states#update'
+
+      member do
+        post 'walk_state'
+      end
     end
   end
 end

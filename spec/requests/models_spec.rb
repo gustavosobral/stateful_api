@@ -57,6 +57,15 @@ describe 'Models requests' do
       end.to change{Model.count}.by(-1)
       expect(response.status).to eq(204)
     end
+
+    it 'walk the current state' do
+      model = FactoryGirl.create(:model, current_state: 0)
+      3.times { FactoryGirl.create(:state, model: model) }
+      
+      post "/v1/models/#{model.id}/walk_state", { params: {}, headers: @auth_headers }
+      model.reload
+      expect(model.current_state).to eq(1)
+    end
   end
 
   context 'with invalid data' do
@@ -83,6 +92,13 @@ describe 'Models requests' do
       put "/v1/models/#{model.id}", params: { model: { name: nil } }, headers: @auth_headers
       expect(response.status).to eq(400)
       expect_json('errors.name', ["can't be blank"])
+    end
+
+    it "don't walk state" do
+      model = FactoryGirl.create(:model)
+      post "/v1/models/#{model.id}/walk_state", { params: {}, headers: @auth_headers }
+      expect(response.status).to eq(400)
+      expect_json('errors.base', ['no more states available'])
     end
   end
 end
