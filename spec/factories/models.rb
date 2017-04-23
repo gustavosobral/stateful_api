@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :model do
     name          { 'Vehicle' }
-    current_state { 1 }
+    current_state { nil }
   end
 end
