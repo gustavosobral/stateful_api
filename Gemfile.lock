@@ -56,6 +56,10 @@ GEM
     byebug (9.0.6)
     case_transform (0.2)
       activesupport
+    codecov (0.1.10)
+      json
+      simplecov
+      url
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     database_cleaner (1.5.3)
@@ -212,6 +216,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.4)
     unicode-display_width (1.2.1)
+    url (0.3.2)
     warden (1.2.7)
       rack (>= 1.0)
     websocket-driver (0.6.5)
@@ -224,6 +229,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   airborne
+  codecov
   database_cleaner
   devise
   devise_token_auth

@@ -32,6 +32,7 @@ end
 
 group :test do
   gem 'airborne'
+  gem 'codecov', require: false
   gem 'database_cleaner'
   gem 'simplecov'
 end
