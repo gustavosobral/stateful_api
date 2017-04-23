@@ -10,6 +10,15 @@ module V1
     end
 
     def update
+      model = set_model
+      states = StatesManager.new(model, params).process
+      render json: states
+    end
+
+    private
+
+    def set_model
+      Model.find(params[:model_id])
     end
   end
 end
